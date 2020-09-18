@@ -74,7 +74,7 @@ public class TestSmellDetectorHandler extends AbstractHandler {
 			Pattern testEndPattern = Pattern.compile("^([^//]*)[^\\w][\\}]$", Pattern.MULTILINE);
 
 			// Regular expressions to check whether the code smell is present.
-			Pattern conditionalStatementPattern = Pattern.compile("^([^//]*)(if|while|switch|for)[\\s]*[\\(]", Pattern.MULTILINE);
+			Pattern conditionalStatementPattern = Pattern.compile("^([^//]*)(if|else|while|switch|for)[\\s]*[\\(]", Pattern.MULTILINE);
 			Pattern executionDelayPattern = Pattern.compile("^([^//]*)(Thread\\.sleep)[\\s]*[\\(]", Pattern.MULTILINE);
 			Pattern externalDataDependencyPattern = Pattern.compile("^([^//]*)(File|Connection)[\\s]*[a-zA-Z]+[\\s]*[\\=]", Pattern.MULTILINE);
 
@@ -97,7 +97,7 @@ public class TestSmellDetectorHandler extends AbstractHandler {
 							marker.setAttribute(IMarker.LINE_NUMBER, lineNumber);
 							marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_WARNING);
 							marker.setAttribute(IMarker.MESSAGE,
-									"Conditional code smell is present in the test suite");
+									"Conditional Test Logic smell is present in the test suite");
 							marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_HIGH);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -112,7 +112,7 @@ public class TestSmellDetectorHandler extends AbstractHandler {
 							marker.setAttribute(IMarker.LINE_NUMBER, lineNumber);
 							marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_WARNING);
 							marker.setAttribute(IMarker.MESSAGE,
-									"External data dependency is present in the test suite");
+									"External Date Dependency smell is present in the test suite");
 							marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_HIGH);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -168,9 +168,9 @@ public class TestSmellDetectorHandler extends AbstractHandler {
 			float executionDelaySmellRatio = (float) (((testCount-executionDelaySmellTestCount)*100)/testCount);
 			float externalDataDependencySmellRatio = (float) (((testCount-externalDataDepedendencySmellTestCount)*100)/testCount);
 
-			displayText = "Ratio of tests without conditional code smell = " + conditionalSmellRatio + "%" + "\n" + 
-					"Ratio of tests without execution delay = " + executionDelaySmellRatio + "%" + "\n" +
-					"Ratio of tests without external data dependency = " + externalDataDependencySmellRatio + "%"; 
+			displayText = "Ratio of tests without Conditional Test Logic smell = " + conditionalSmellRatio + "%" + "\n" + 
+					"Ratio of tests without Test Execution Delay smell = " + executionDelaySmellRatio + "%" + "\n" + 
+					"Ratio of tests without External Data Dependency smell = " + externalDataDependencySmellRatio + "%"; 
 
 		}else {
 			displayText = "There are no tests in the test suite";

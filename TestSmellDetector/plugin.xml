@@ -45,18 +45,6 @@
             </command>
          </menu>
       </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
-         <toolbar
-               id="CodeSmell.toolbars.sampleToolbar">
-            <command
-                  id="CodeSmell.toolbars.sampleCommand"
-                  commandId="CodeSmell.commands.sampleCommand"
-                  icon="icons/sample.png"
-                  tooltip="Welcome">
-            </command>
-         </toolbar>
-      </menuContribution>
    </extension>
 
 </plugin>
